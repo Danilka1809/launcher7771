@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrifLauncher — Ultimate Minecraft Launcher</title>
+    <title>GrifLauncher</title>
     <style>
         * {
             margin: 0;
@@ -12,87 +12,15 @@
         }
 
         body {
-            background: radial-gradient(ellipse at 20% 30%, #0a0f1a, #03050a);
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: #0b0e17;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: #eef2ff;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* RGB АНИМАЦИЯ ФОНА */
-        @keyframes rgbBackground {
-            0% { background-position: 0% 0%; filter: hue-rotate(0deg); }
-            50% { background-position: 100% 100%; filter: hue-rotate(180deg); }
-            100% { background-position: 0% 0%; filter: hue-rotate(360deg); }
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                rgba(59,130,246,0.08), 
-                rgba(139,92,246,0.08), 
-                rgba(236,72,153,0.08),
-                rgba(59,130,246,0.08));
-            background-size: 400% 400%;
-            animation: rgbBackground 15s ease infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 24px;
-        }
-
-        /* АНИМАЦИИ */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 5px rgba(59,130,246,0.3); }
-            50% { box-shadow: 0 0 30px rgba(59,130,246,0.6); }
-        }
-
-        /* СТЕКЛЯННЫЕ КАРТОЧКИ */
-        .glass-card {
-            background: rgba(18, 25, 45, 0.55);
-            backdrop-filter: blur(16px);
-            border-radius: 32px;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: fadeInUp 0.5s ease-out;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(59, 130, 246, 0.6);
-            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
-        }
-
-        /* RGB КНОПКИ */
-        @keyframes rgbButton {
-            0% { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-            25% { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-            50% { background: linear-gradient(135deg, #ec4899, #be185d); }
-            75% { background: linear-gradient(135deg, #f59e0b, #d97706); }
-            100% { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-        }
-
+        /* Кнопки */
         .btn {
+            background: #3b82f6;
             border: none;
             padding: 12px 28px;
             border-radius: 60px;
@@ -100,184 +28,65 @@
             font-size: 15px;
             color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
+            transition: all 0.2s;
         }
 
         .btn:hover {
-            transform: scale(1.03);
-            animation: rgbButton 2s infinite;
-        }
-
-        .btn-play {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            font-size: 18px;
-            padding: 14px 36px;
+            background: #2563eb;
+            transform: scale(1.02);
         }
 
         .btn-outline {
             background: transparent;
             border: 1.5px solid #3b82f6;
+            color: #3b82f6;
         }
 
         .btn-outline:hover {
-            background: rgba(59,130,246,0.15);
-            animation: none;
+            background: rgba(59,130,246,0.1);
         }
 
-        /* ШАПКА */
+        .btn-play {
+            background: #22c55e;
+        }
+
+        .btn-play:hover {
+            background: #16a34a;
+        }
+
+        /* Карточки */
+        .card {
+            background: rgba(18, 25, 45, 0.8);
+            border-radius: 28px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 32px;
+        }
+
+        /* Шапка */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
             gap: 16px;
         }
 
         .logo {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 800;
-            background: linear-gradient(135deg, #fff, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 200% auto;
-            animation: rgbButton 3s infinite;
+            color: #3b82f6;
         }
 
         .online-badge {
             background: rgba(59,130,246,0.15);
-            padding: 8px 24px;
+            padding: 8px 20px;
             border-radius: 60px;
             font-size: 14px;
-            font-weight: 500;
-            border: 1px solid rgba(59,130,246,0.4);
-            backdrop-filter: blur(8px);
-            animation: glowPulse 2s infinite;
+            border: 1px solid rgba(59,130,246,0.3);
         }
 
-        /* СТАТИСТИКА */
-        .stats-grid {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .stat-card {
-            background: rgba(0,0,0,0.35);
-            backdrop-filter: blur(8px);
-            border-radius: 80px;
-            padding: 12px 32px;
-            text-align: center;
-            border: 1px solid rgba(59,130,246,0.25);
-            transition: all 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: scale(1.05);
-            border-color: #3b82f6;
-        }
-
-        .stat-number {
-            font-size: 34px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        /* ОСНОВНАЯ СЕТКА */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        @media (max-width: 900px) {
-            .main-grid { grid-template-columns: 1fr; }
-        }
-
-        /* ЧАТ */
-        .chat-messages {
-            height: 350px;
-            overflow-y: auto;
-            margin: 20px 0;
-            padding: 8px;
-        }
-
-        .message {
-            background: rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 10px 14px;
-            margin-bottom: 8px;
-            transition: all 0.2s;
-        }
-
-        .message:hover {
-            background: rgba(59,130,246,0.1);
-            transform: translateX(5px);
-        }
-
-        .chat-input {
-            display: flex;
-            gap: 12px;
-        }
-
-        .chat-input input {
-            flex: 1;
-            padding: 12px 18px;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid #3b82f6;
-            border-radius: 60px;
-            color: white;
-            font-size: 14px;
-        }
-
-        .chat-input input:focus {
-            outline: none;
-            border-color: #8b5cf6;
-            box-shadow: 0 0 0 2px rgba(139,92,246,0.2);
-        }
-
-        /* АВАТАР */
-        .avatar {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
-            background-size: 200% 200%;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            margin: 0 auto 20px;
-            animation: rgbButton 3s infinite;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        /* ПОЛЯ ВВОДА */
+        /* Поля ввода */
         .input-group {
             margin-bottom: 18px;
         }
@@ -290,75 +99,21 @@
             border-radius: 60px;
             color: white;
             font-size: 14px;
-            transition: all 0.2s;
         }
 
         .input-group input:focus {
             outline: none;
-            border-color: #8b5cf6;
-            box-shadow: 0 0 0 2px rgba(139,92,246,0.2);
+            border-color: #60a5fa;
         }
 
-        /* СЕРВЕРЫ */
-        .servers-grid {
-            display: grid;
-            gap: 14px;
-            margin: 20px 0;
+        .input-group input::placeholder {
+            color: #8b9dc3;
         }
 
-        .server-card {
-            background: rgba(0,0,0,0.3);
-            border-radius: 24px;
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.2s;
-        }
-
-        .server-card:hover {
-            background: rgba(59,130,246,0.1);
-            transform: translateX(8px);
-        }
-
-        .server-name {
-            font-weight: 700;
-            font-size: 17px;
-        }
-
-        .server-ip {
-            font-family: monospace;
-            font-size: 12px;
-            color: #3b82f6;
-            margin-top: 5px;
-        }
-
-        /* НОВОСТИ */
-        .news-grid {
-            display: grid;
-            gap: 12px;
-            margin-top: 16px;
-        }
-
-        .news-item {
-            background: rgba(0,0,0,0.3);
-            border-radius: 18px;
-            padding: 14px 18px;
-            border-left: 3px solid #3b82f6;
-            transition: all 0.2s;
-        }
-
-        .news-item:hover {
-            background: rgba(59,130,246,0.08);
-            transform: translateX(5px);
-            border-left-color: #8b5cf6;
-        }
-
-        /* АВТОРИЗАЦИЯ */
-        .auth-card {
-            max-width: 480px;
-            margin: 60px auto;
-            padding: 40px;
+        /* Авторизация */
+        .auth-container {
+            max-width: 450px;
+            margin: 80px auto;
         }
 
         .switch-text {
@@ -366,7 +121,6 @@
             margin-top: 20px;
             color: #8b9dc3;
             cursor: pointer;
-            transition: color 0.2s;
         }
 
         .switch-text:hover {
@@ -380,11 +134,125 @@
             font-size: 13px;
         }
 
-        .success-msg {
-            color: #22c55e;
+        /* Основной интерфейс */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 60px;
+            padding: 10px 28px;
             text-align: center;
-            margin-top: 12px;
-            font-size: 13px;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #3b82f6;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .main-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Чат */
+        .chat-messages {
+            height: 320px;
+            overflow-y: auto;
+            margin: 16px 0;
+        }
+
+        .message {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 10px 14px;
+            margin-bottom: 8px;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid #3b82f6;
+            border-radius: 60px;
+            color: white;
+        }
+
+        /* Аватар */
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 20px;
+        }
+
+        /* Серверы */
+        .servers-grid {
+            display: grid;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .server-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .server-name {
+            font-weight: 700;
+        }
+
+        .server-ip {
+            font-family: monospace;
+            font-size: 12px;
+            color: #3b82f6;
+            margin-top: 4px;
+        }
+
+        /* Новости */
+        .news-grid {
+            display: grid;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .news-item {
+            background: rgba(0,0,0,0.25);
+            border-radius: 16px;
+            padding: 12px 16px;
+            border-left: 3px solid #3b82f6;
         }
 
         .user-info {
@@ -400,44 +268,25 @@
             padding: 6px 16px;
             border-radius: 60px;
             cursor: pointer;
-            transition: all 0.2s;
         }
 
         .logout-btn:hover {
             background: rgba(239,68,68,0.3);
-            transform: scale(1.02);
         }
 
         .footer {
             text-align: center;
-            padding: 30px;
+            padding: 24px;
             font-size: 12px;
             color: #6c7a91;
             border-top: 1px solid rgba(59,130,246,0.1);
-            margin-top: 40px;
+            margin-top: 30px;
         }
 
         .section-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             margin-bottom: 16px;
-            background: linear-gradient(135deg, #fff, #3b82f6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        /* СКРОЛЛБАР */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.05);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            border-radius: 10px;
         }
     </style>
 </head>
@@ -445,24 +294,26 @@
 <div class="container">
     <!-- АВТОРИЗАЦИЯ -->
     <div id="authSection">
-        <div class="glass-card auth-card">
-            <div class="logo" style="text-align: center;">GRIF LAUNCHER</div>
-            <div style="text-align: center; color: #8b9dc3; margin: 10px 0 30px;">🎮 Войдите в аккаунт</div>
-            <div class="input-group"><input type="text" id="loginNick" placeholder="👤 Никнейм"></div>
-            <div class="input-group"><input type="password" id="loginPass" placeholder="🔒 Пароль"></div>
-            <button class="btn" id="doLoginBtn" style="width: 100%;">🚀 ВОЙТИ</button>
-            <div class="switch-text" id="showRegBtn">✨ Нет аккаунта? Создать</div>
+        <div class="card auth-container">
+            <div class="logo" style="text-align: center; font-size: 28px;">GRIF LAUNCHER</div>
+            <div style="text-align: center; color: #8b9dc3; margin: 10px 0 30px;">Войдите в аккаунт</div>
+            
+            <div class="input-group"><input type="text" id="loginNick" placeholder="Никнейм"></div>
+            <div class="input-group"><input type="password" id="loginPass" placeholder="Пароль"></div>
+            <button class="btn" id="doLoginBtn" style="width: 100%;">ВОЙТИ</button>
+            <div class="switch-text" id="showRegBtn">Нет аккаунта? Зарегистрироваться</div>
             <div class="error-msg" id="authError"></div>
         </div>
 
-        <div class="glass-card auth-card" id="regCard" style="display: none;">
-            <div class="logo" style="text-align: center;">СОЗДАТЬ АККАУНТ</div>
-            <div style="text-align: center; color: #8b9dc3; margin: 10px 0 30px;">🌟 Присоединяйся к сообществу</div>
-            <div class="input-group"><input type="text" id="regNick" placeholder="👤 Никнейм"></div>
-            <div class="input-group"><input type="password" id="regPass" placeholder="🔒 Пароль"></div>
-            <div class="input-group"><input type="password" id="regCloudPass" placeholder="☁️ Облачный пароль"></div>
-            <button class="btn" id="doRegBtn" style="width: 100%;">📝 ЗАРЕГИСТРИРОВАТЬСЯ</button>
-            <div class="switch-text" id="showAuthBtn">🔙 Уже есть аккаунт? Войти</div>
+        <div class="card auth-container" id="regCard" style="display: none;">
+            <div class="logo" style="text-align: center; font-size: 28px;">РЕГИСТРАЦИЯ</div>
+            <div style="text-align: center; color: #8b9dc3; margin: 10px 0 30px;">Создайте аккаунт</div>
+            
+            <div class="input-group"><input type="text" id="regNick" placeholder="Никнейм"></div>
+            <div class="input-group"><input type="password" id="regPass" placeholder="Пароль"></div>
+            <div class="input-group"><input type="password" id="regCloudPass" placeholder="Облачный пароль"></div>
+            <button class="btn" id="doRegBtn" style="width: 100%;">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+            <div class="switch-text" id="showAuthBtn">Уже есть аккаунт? Войти</div>
             <div class="error-msg" id="regError"></div>
         </div>
     </div>
@@ -472,81 +323,72 @@
         <div class="header">
             <div class="logo">GRIF LAUNCHER</div>
             <div class="user-info">
-                <span style="font-size: 24px;">🔥</span>
-                <span id="userNickname" style="font-weight: 600;"></span>
-                <button class="logout-btn" id="logoutBtn">🚪 Выйти</button>
+                <span>🔥</span>
+                <span id="userNickname"></span>
+                <button class="logout-btn" id="logoutBtn">Выйти</button>
             </div>
         </div>
 
-        <div class="online-badge" style="display: inline-block; margin-bottom: 30px;">
-            ⚡ 2 847 игроков онлайн прямо сейчас
-        </div>
+        <div class="online-badge" style="display: inline-block; margin-bottom: 25px;">⚡ 247 игроков онлайн</div>
 
         <div class="stats-grid">
-            <div class="stat-card"><div class="stat-number">12.8K</div><div class="stat-label">игроков всего</div></div>
-            <div class="stat-card"><div class="stat-number">824</div><div class="stat-label">серверов</div></div>
-            <div class="stat-card"><div class="stat-number">47K</div><div class="stat-label">модов доступно</div></div>
+            <div class="stat-card"><div class="stat-number">12.8K</div><div>игроков</div></div>
+            <div class="stat-card"><div class="stat-number">824</div><div>серверов</div></div>
+            <div class="stat-card"><div class="stat-number">47K</div><div>модов</div></div>
         </div>
 
         <div class="main-grid">
-            <!-- ЛЕВАЯ КОЛОНКА: ЧАТ -->
-            <div class="glass-card" style="padding: 24px;">
+            <div class="card">
                 <div class="section-title">💬 Глобальный чат</div>
                 <div class="chat-messages" id="chatMessages"></div>
                 <div class="chat-input">
-                    <input type="text" id="messageInput" placeholder="💬 Написать сообщение...">
-                    <button class="btn" id="sendMsgBtn">📤 Отправить</button>
+                    <input type="text" id="messageInput" placeholder="Написать сообщение...">
+                    <button class="btn" id="sendMsgBtn">Отправить</button>
                 </div>
             </div>
 
-            <!-- ПРАВАЯ КОЛОНКА: ПРОФИЛЬ -->
-            <div class="glass-card" style="padding: 24px;">
+            <div class="card">
                 <div class="avatar">🔥</div>
-                <div class="input-group"><input type="text" id="profileNick" placeholder="👤 Никнейм"></div>
-                <div class="input-group"><input type="password" id="profilePass" placeholder="🔒 Пароль"></div>
-                <div class="input-group"><input type="password" id="profileCloudPass" placeholder="☁️ Облачный пароль"></div>
-                <button class="btn btn-outline" id="saveProfileBtn" style="width: 100%;">💾 Сохранить профиль</button>
+                <div class="input-group"><input type="text" id="profileNick" placeholder="Никнейм"></div>
+                <div class="input-group"><input type="password" id="profilePass" placeholder="Пароль"></div>
+                <div class="input-group"><input type="password" id="profileCloudPass" placeholder="Облачный пароль"></div>
+                <button class="btn btn-outline" id="saveProfileBtn" style="width: 100%;">Сохранить профиль</button>
             </div>
         </div>
 
-        <!-- СЕРВЕРЫ -->
-        <div class="glass-card" style="padding: 24px; margin-bottom: 30px;">
+        <div class="card" style="margin-bottom: 25px;">
             <div class="section-title">🎮 Наши серверы</div>
             <div class="servers-grid">
                 <div class="server-card">
                     <div><div class="server-name">⭐ GrifMC Pro</div><div class="server-ip">grifmcpro.aternos.me:18014</div></div>
-                    <button class="btn btn-play playServerBtn" data-ip="grifmcpro.aternos.me:18014">🎮 Играть</button>
+                    <button class="btn btn-play playServerBtn" data-ip="grifmcpro.aternos.me:18014">Играть</button>
                 </div>
                 <div class="server-card">
                     <div><div class="server-name">⚡ Vanilla World</div><div class="server-ip">vanilla.grifmc.ru:25565</div></div>
-                    <button class="btn btn-play playServerBtn" data-ip="vanilla.grifmc.ru:25565">🎮 Играть</button>
+                    <button class="btn btn-play playServerBtn" data-ip="vanilla.grifmc.ru:25565">Играть</button>
                 </div>
                 <div class="server-card">
                     <div><div class="server-name">🔫 PvP Arena</div><div class="server-ip">pvp.grfmc.ru:25565</div></div>
-                    <button class="btn btn-play playServerBtn" data-ip="pvp.grfmc.ru:25565">🎮 Играть</button>
+                    <button class="btn btn-play playServerBtn" data-ip="pvp.grfmc.ru:25565">Играть</button>
                 </div>
             </div>
         </div>
 
-        <!-- НОВОСТИ -->
-        <div class="glass-card" style="padding: 24px;">
-            <div class="section-title">📢 Новости и события</div>
+        <div class="card">
+            <div class="section-title">📢 Новости и акции</div>
             <div class="news-grid">
-                <div class="news-item">🎁 <strong>Новый донат-ранг "Легенда"</strong> — /fly, /god, /kit legend</div>
-                <div class="news-item">🛡️ <strong>Защита от гриферов</strong> — WorldGuard и приваты на спавне</div>
-                <div class="news-item">📅 <strong>Ивент в субботу</strong> — Клановая битва в 20:00 МСК</div>
-                <div class="news-item">✨ <strong>Обновление 2.0</strong> — Новые кейсы и улучшенная производительность</div>
+                <div class="news-item">🎁 Новый донат-ранг "Легенда" - /fly, /god</div>
+                <div class="news-item">🛡️ Защита от гриферов - WorldGuard</div>
+                <div class="news-item">📅 Ивент в субботу в 20:00 МСК</div>
             </div>
         </div>
 
-        <div class="footer">
-            GrifLauncher © 2026 — Ваш проводник в мир Minecraft
-        </div>
+        <div class="footer">GrifLauncher © 2026</div>
     </div>
 </div>
 
 <script>
-    // ===== ХРАНИЛИЩЕ =====
+    // ===== ДАННЫЕ =====
     let users = JSON.parse(localStorage.getItem('griflauncher_users') || '{}');
     let currentUser = localStorage.getItem('griflauncher_current_user');
     let messages = JSON.parse(localStorage.getItem('griflauncher_messages') || '[]');
@@ -554,8 +396,8 @@
     function saveUsers() { localStorage.setItem('griflauncher_users', JSON.stringify(users)); }
     function saveMessages() { localStorage.setItem('griflauncher_messages', JSON.stringify(messages)); }
 
-    // ===== ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ =====
-    function showMainUI() {
+    // ===== ПЕРЕКЛЮЧЕНИЕ =====
+    function showMain() {
         document.getElementById('authSection').style.display = 'none';
         document.getElementById('mainSection').style.display = 'block';
         document.getElementById('userNickname').innerText = currentUser;
@@ -569,31 +411,29 @@
         renderMessages();
     }
 
-    function showAuthUI() {
+    function showAuth() {
         document.getElementById('authSection').style.display = 'block';
         document.getElementById('mainSection').style.display = 'none';
-        document.getElementById('authError').innerText = '';
-        document.getElementById('regError').innerText = '';
     }
 
     // ===== ВХОД =====
     document.getElementById('doLoginBtn')?.addEventListener('click', () => {
         let nick = document.getElementById('loginNick').value.trim();
         let pass = document.getElementById('loginPass').value;
-        let errorDiv = document.getElementById('authError');
+        let error = document.getElementById('authError');
         
         if (!nick || !pass) {
-            errorDiv.innerText = '❌ Заполните все поля';
+            error.innerText = 'Заполните все поля';
             return;
         }
         
         if (users[nick] && users[nick].password === pass) {
             currentUser = nick;
             localStorage.setItem('griflauncher_current_user', currentUser);
-            showMainUI();
-            errorDiv.innerText = '';
+            showMain();
+            error.innerText = '';
         } else {
-            errorDiv.innerText = '❌ Неверный логин или пароль';
+            error.innerText = 'Неверный логин или пароль';
         }
     });
 
@@ -602,15 +442,15 @@
         let nick = document.getElementById('regNick').value.trim();
         let pass = document.getElementById('regPass').value;
         let cloudPass = document.getElementById('regCloudPass').value;
-        let errorDiv = document.getElementById('regError');
+        let error = document.getElementById('regError');
         
         if (!nick || !pass || !cloudPass) {
-            errorDiv.innerText = '❌ Заполните все поля';
+            error.innerText = 'Заполните все поля';
             return;
         }
         
         if (users[nick]) {
-            errorDiv.innerText = '❌ Никнейм уже занят';
+            error.innerText = 'Никнейм уже занят';
             return;
         }
         
@@ -618,31 +458,31 @@
         saveUsers();
         currentUser = nick;
         localStorage.setItem('griflauncher_current_user', currentUser);
-        showMainUI();
+        showMain();
     });
 
-    // ===== ПЕРЕКЛЮЧЕНИЕ МЕЖДУ ВХОДОМ И РЕГИСТРАЦИЕЙ =====
+    // ===== ПЕРЕКЛЮЧЕНИЕ ФОРМ =====
     document.getElementById('showRegBtn')?.addEventListener('click', () => {
-        document.getElementById('authSection').querySelector('.auth-card').style.display = 'none';
+        document.querySelector('#authSection .card').style.display = 'none';
         document.getElementById('regCard').style.display = 'block';
     });
 
     document.getElementById('showAuthBtn')?.addEventListener('click', () => {
         document.getElementById('regCard').style.display = 'none';
-        document.getElementById('authSection').querySelector('.auth-card').style.display = 'block';
+        document.querySelector('#authSection .card').style.display = 'block';
     });
 
     // ===== ВЫХОД =====
     document.getElementById('logoutBtn')?.addEventListener('click', () => {
         currentUser = null;
         localStorage.removeItem('griflauncher_current_user');
-        showAuthUI();
+        showAuth();
     });
 
     // ===== СОХРАНЕНИЕ ПРОФИЛЯ =====
     document.getElementById('saveProfileBtn')?.addEventListener('click', () => {
         if (!currentUser) {
-            alert('Сначала войдите в аккаунт');
+            alert('Сначала войдите');
             return;
         }
         
@@ -669,7 +509,7 @@
         users[currentUser] = { password: pass, cloudPassword: cloudPass };
         saveUsers();
         document.getElementById('userNickname').innerText = currentUser;
-        alert('✅ Профиль сохранён!');
+        alert('Профиль сохранён');
     });
 
     // ===== ЧАТ =====
@@ -724,7 +564,7 @@
         });
     });
 
-    // ===== АВТООБНОВЛЕНИЕ ЧАТА =====
+    // ===== ОБНОВЛЕНИЕ ЧАТА =====
     setInterval(() => {
         messages = JSON.parse(localStorage.getItem('griflauncher_messages') || '[]');
         renderMessages();
@@ -732,9 +572,9 @@
 
     // ===== ЗАПУСК =====
     if (currentUser && users[currentUser]) {
-        showMainUI();
+        showMain();
     } else {
-        showAuthUI();
+        showAuth();
     }
 </script>
 </body>
